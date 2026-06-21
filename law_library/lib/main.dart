@@ -8,6 +8,7 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:law_library/l10n/app_localizations.dart';
 
+import 'package:law_library/providers/auth_provider.dart';
 import 'package:law_library/providers/law_provider.dart';
 import 'package:law_library/providers/theme_provider.dart';
 import 'package:law_library/screens/splash_screen.dart';
@@ -38,6 +39,7 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) {
           final provider = LawProvider();

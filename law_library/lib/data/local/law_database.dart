@@ -19,9 +19,17 @@ class LawDatabase {
 
     return await openDatabase(
       path,
-      version: 1,
+      version: 2,
       onCreate: _onCreate,
+      onUpgrade: _onUpgrade,
     );
+  }
+
+  Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
+    if (oldVersion < 2) {
+      await db.execute('ALTER TABLE laws ADD COLUMN Title_MS TEXT');
+      await db.execute('ALTER TABLE laws ADD COLUMN Description_MS TEXT');
+    }
   }
 
   Future<void> _onCreate(Database db, int version) async {
@@ -32,7 +40,9 @@ class LawDatabase {
         Chapter TEXT NOT NULL,
         Category TEXT NOT NULL,
         Title TEXT NOT NULL,
+        Title_MS TEXT,
         Description TEXT NOT NULL,
+        Description_MS TEXT,
 
         Compound_Fine TEXT,
         Second_Compound_Fine TEXT,
