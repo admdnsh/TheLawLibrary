@@ -222,7 +222,10 @@ class LawListItem extends StatelessWidget {
                         child: Material(
                           color: Colors.transparent,
                           child: Text(
-                            law.title,
+                            themeProvider.language == AppLanguage.malay &&
+                                    (law.titleMs?.isNotEmpty == true)
+                                ? law.titleMs!
+                                : law.title,
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium
