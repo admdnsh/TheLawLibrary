@@ -1,8 +1,8 @@
 # The Law Library — User Manual
 
-**Version:** 1.1  
-**Date:** May 2026  
-**Prepared for:** RBPF Officers, Testers & Future Developers  
+**Version:** 1.2
+**Date:** June 2026
+**Prepared for:** RBPF Officers, Testers & Future Developers
 **Platform:** Android · Windows Desktop · Web Browser (Next.js)
 
 ---
@@ -22,33 +22,34 @@
 10. [Run on Android (Physical Phone)](#10-run-on-android-physical-phone)
 11. [Run on Windows Desktop](#11-run-on-windows-desktop)
 12. [Run on Web Browser](#12-run-on-web-browser)
-13. [Project Structure for Developers](#13-project-structure-for-developers)
-14. [Database & API Reference](#14-database--api-reference)
+13. [Backend Setup (Docker)](#13-backend-setup-docker)
+14. [Project Structure for Developers](#14-project-structure-for-developers)
+15. [Database & API Reference](#15-database--api-reference)
 
 ### Part 2 — Mobile & Desktop App Usage Manual
-15. [First Launch & Onboarding](#15-first-launch--onboarding)
-16. [Login Screen](#16-login-screen)
-17. [Home Screen](#17-home-screen)
-18. [Dashboard](#18-dashboard)
-19. [Browsing Laws by Category](#19-browsing-laws-by-category)
-20. [Viewing a Law in Detail](#20-viewing-a-law-in-detail)
-21. [Search](#21-search)
-22. [Favorites](#22-favorites)
-23. [Settings](#23-settings)
-24. [Admin Panel](#24-admin-panel)
-25. [Payment Screen](#25-payment-screen)
-26. [About Screen](#26-about-screen)
+16. [First Launch & Onboarding](#16-first-launch--onboarding)
+17. [Login Screen](#17-login-screen)
+18. [Home Screen](#18-home-screen)
+19. [Dashboard](#19-dashboard)
+20. [Browsing Laws by Category](#20-browsing-laws-by-category)
+21. [Viewing a Law in Detail](#21-viewing-a-law-in-detail)
+22. [Search](#22-search)
+23. [Favorites](#23-favorites)
+24. [Settings](#24-settings)
+25. [Admin Panel](#25-admin-panel)
+26. [Payment Screen](#26-payment-screen)
+27. [About Screen](#27-about-screen)
 
 ### Part 3 — Web App Usage Manual
-27. [Accessing the Web App](#27-accessing-the-web-app)
-28. [Web App Login](#28-web-app-login)
-29. [Home — Browsing & Searching Laws](#29-home--browsing--searching-laws)
-30. [Viewing a Law in Detail (Web)](#30-viewing-a-law-in-detail-web)
-31. [Favorites (Web)](#31-favorites-web)
-32. [Settings (Web)](#32-settings-web)
-33. [Admin Dashboard (Web)](#33-admin-dashboard-web)
-34. [Manage Laws (Web)](#34-manage-laws-web)
-35. [Manage Users (Web)](#35-manage-users-web)
+28. [Accessing the Web App](#28-accessing-the-web-app)
+29. [Web App Login](#29-web-app-login)
+30. [Home — Browsing & Searching Laws](#30-home--browsing--searching-laws)
+31. [Viewing a Law in Detail (Web)](#31-viewing-a-law-in-detail-web)
+32. [Favorites (Web)](#32-favorites-web)
+33. [Settings (Web)](#33-settings-web)
+34. [Admin Dashboard (Web)](#34-admin-dashboard-web)
+35. [Manage Laws (Web)](#35-manage-laws-web)
+36. [Manage Users (Web)](#36-manage-users-web)
 
 ---
 
@@ -64,6 +65,8 @@
 
 Before you begin, make sure your computer meets these minimum requirements:
 
+### Windows
+
 | Requirement | Minimum |
 |---|---|
 | Operating System | Windows 10 or Windows 11 (64-bit) |
@@ -74,13 +77,25 @@ Before you begin, make sure your computer meets these minimum requirements:
 
 > **What is 64-bit?** To check: press `Windows key + Pause/Break`, or go to `Start → Settings → System → About`. Look for "System type" — it should say "64-bit operating system".
 
+### macOS
+
+| Requirement | Minimum |
+|---|---|
+| Operating System | macOS 12 Monterey or later |
+| RAM (Memory) | 8 GB |
+| Disk Space | 15 GB free space |
+| Internet | Required (for setup and app to function) |
+| Processor | Apple Silicon (M1/M2/M3) or Intel Core i5 or better |
+
+> **What version of macOS do I have?** Click the Apple menu () in the top-left corner and select **"About This Mac"**. The version number will be shown.
+
 ---
 
 ## 2. Install Git
 
 Git is a tool that lets you download the project from the internet onto your computer.
 
-### Steps:
+### Windows Steps:
 
 1. Open your web browser (Chrome, Edge, Firefox — any will work).
 2. Go to: **https://git-scm.com/download/win**
@@ -89,7 +104,17 @@ Git is a tool that lets you download the project from the internet onto your com
 5. A setup window will open. **Click "Next" on every screen without changing anything.**
 6. At the end, click **"Install"**, then **"Finish"**.
 
-### Verify Git is installed:
+### macOS Steps:
+
+1. Open the **Terminal** app (press `Command + Space`, type `Terminal`, press Enter).
+2. Type the following and press Enter:
+   ```
+   git --version
+   ```
+3. If Git is not installed, macOS will automatically prompt you to install **Xcode Command Line Tools**. Click **"Install"** and wait for it to finish.
+4. Once done, run `git --version` again to confirm.
+
+### Verify Git is installed (Windows):
 
 1. Press `Windows key + R` on your keyboard.
 2. Type `cmd` and press Enter. A black window (Command Prompt) will open.
@@ -105,7 +130,7 @@ Git is a tool that lets you download the project from the internet onto your com
 
 Android Studio is the main program you will use to run and edit the project.
 
-### Steps:
+### Windows Steps:
 
 1. Go to: **https://developer.android.com/studio**
 2. Click the big green button that says **"Download Android Studio"**.
@@ -118,7 +143,15 @@ Android Studio is the main program you will use to run and edit the project.
    - This will take several minutes. Let it finish.
 6. Click **Finish**. Android Studio will open for the first time.
 
-### First-Time Android Studio Setup:
+### macOS Steps:
+
+1. Go to: **https://developer.android.com/studio**
+2. Click **"Download Android Studio"** and choose the macOS version (select **Mac with Apple Silicon** if you have an M1/M2/M3 chip, or **Mac with Intel chip** otherwise).
+3. Once downloaded, open the `.dmg` file.
+4. Drag **Android Studio** into the **Applications** folder.
+5. Open **Android Studio** from your Applications folder.
+
+### First-Time Android Studio Setup (all platforms):
 
 When Android Studio opens for the first time, a setup wizard appears:
 
@@ -135,7 +168,7 @@ When Android Studio opens for the first time, a setup wizard appears:
 
 Flutter is the framework that the Law Library app is built with. You must install it separately.
 
-### Steps:
+### Windows Steps:
 
 1. Go to: **https://docs.flutter.dev/get-started/install/windows/mobile**
 2. Scroll down until you see a section called **"Download and install"**.
@@ -152,7 +185,7 @@ Flutter is the framework that the Law Library app is built with. You must instal
 7. Inside the zip, there is a folder called `flutter`. **Copy everything inside it** into `C:\flutter`.
    - After copying, you should have files like `C:\flutter\bin\flutter.bat`
 
-### Add Flutter to System PATH:
+### Add Flutter to System PATH (Windows):
 
 PATH is a setting that lets your computer find Flutter from anywhere. This step is required.
 
@@ -164,16 +197,31 @@ PATH is a setting that lets your computer find Flutter from anywhere. This step 
 6. Type exactly: `C:\flutter\bin`
 7. Click **OK**, then **OK**, then **OK** to close all windows.
 
-### Verify Flutter is installed:
+### macOS Steps:
 
-1. Close any Command Prompt windows that are open.
-2. Open a new Command Prompt (`Windows key + R` → type `cmd` → Enter).
-3. Type:
+1. Go to: **https://docs.flutter.dev/get-started/install/macos/mobile-android**
+2. Download the Flutter SDK `.zip` file for macOS.
+3. Open **Terminal** and run:
+   ```
+   cd ~/development
+   unzip ~/Downloads/flutter_macos_arm64_xxx.zip
+   ```
+   (Replace `flutter_macos_arm64_xxx.zip` with the actual filename you downloaded.)
+4. Add Flutter to your PATH by running:
+   ```
+   echo 'export PATH="$HOME/development/flutter/bin:$PATH"' >> ~/.zshrc
+   source ~/.zshrc
+   ```
+
+### Verify Flutter is installed (all platforms):
+
+1. Open a new terminal / Command Prompt window.
+2. Type:
    ```
    flutter doctor
    ```
-4. Press Enter. Flutter will check your system. You will see a list of items with checkmarks (✓) or X marks (✗).
-5. At this stage, it is normal to see some X marks. Continue to the next step.
+3. Press Enter. Flutter will check your system. You will see a list of items with checkmarks or X marks.
+4. At this stage, it is normal to see some X marks. Continue to the next step.
 
 ---
 
@@ -183,7 +231,7 @@ PATH is a setting that lets your computer find Flutter from anywhere. This step 
 
 1. Open **Android Studio**.
 2. On the welcome screen, click **"Plugins"** on the left sidebar.
-   - (If a project is already open, go to: `File → Settings → Plugins`)
+   - (If a project is already open, go to: `File → Settings → Plugins` on Windows, or `Android Studio → Settings → Plugins` on macOS)
 3. In the search bar at the top, type: `Flutter`
 4. Click on the **Flutter** plugin (by flutter.dev) and click **Install**.
 5. A message will appear asking to also install **Dart** — click **Install** to confirm.
@@ -191,24 +239,32 @@ PATH is a setting that lets your computer find Flutter from anywhere. This step 
 
 ### Set Flutter SDK Path in Android Studio:
 
+**Windows:**
 1. After Android Studio restarts, go to: `File → Settings` (or press `Ctrl + Alt + S`)
 2. On the left, expand **Languages & Frameworks** and click **Flutter**.
 3. In the **"Flutter SDK path"** field, type: `C:\flutter`
+4. Click **OK**.
+
+**macOS:**
+1. Go to: `Android Studio → Settings`
+2. On the left, expand **Languages & Frameworks** and click **Flutter**.
+3. In the **"Flutter SDK path"** field, type: `~/development/flutter`
 4. Click **OK**.
 
 ---
 
 ## 6. Get the Project Files
 
-You will download the project from GitHub onto your computer.
+You will download the project onto your computer.
 
-### Steps:
-
-### If you received a ZIP file:
-
+**Windows:**
 1. Right-click the ZIP file and select **"Extract All..."**
 2. Choose where to extract it (e.g., Desktop) and click **"Extract"**.
-3. You will have a folder called `TheLawLibrary` (or similar). Remember where it is.
+3. You will have a folder called `CPRBPF` (or similar). Remember where it is.
+
+**macOS:**
+1. Double-click the ZIP file — macOS will extract it automatically.
+2. You will have a folder called `CPRBPF` (or similar) in the same location as the ZIP.
 
 ---
 
@@ -276,6 +332,8 @@ An emulator is a virtual Android phone that runs on your computer. You do not ne
 3. The emulator will open and the app will install and launch automatically.
    - **First launch may take 3–5 minutes.** Be patient.
 
+> **Note for macOS (Apple Silicon):** If the emulator is slow or fails to start, go to `Tools → Device Manager`, edit your virtual device, and make sure the system image says **"ARM"** (not x86). ARM images run natively on Apple Silicon and are much faster.
+
 ---
 
 ## 10. Run on Android (Physical Phone)
@@ -342,67 +400,202 @@ You can run the app in your web browser (Chrome is recommended).
 
 ---
 
-## 13. Project Structure for Developers
+## 13. Backend Setup (Docker)
+
+The backend is a PHP API with a MySQL database. It runs locally on your computer using **Docker**. You must have the backend running for the app to load laws.
+
+> **What is Docker?** Docker is a tool that runs pre-configured software in isolated containers. It means you do not need to install PHP, Apache, or MySQL separately — Docker handles everything.
+
+---
+
+### Step 1 — Install Docker Desktop
+
+**Windows:**
+
+1. Go to: **https://www.docker.com/products/docker-desktop**
+2. Click **"Download for Windows"**.
+3. Open the downloaded installer and follow the on-screen steps.
+4. When prompted, leave all default options and click **Next / Install**.
+5. Restart your computer when asked.
+6. After restart, open **Docker Desktop** from the Start menu. Wait until it says **"Docker Desktop is running"** in the system tray.
+
+**macOS:**
+
+1. Go to: **https://www.docker.com/products/docker-desktop**
+2. Click **"Download for Mac"** — select **Apple Silicon** if you have an M1/M2/M3 chip, or **Intel Chip** otherwise.
+3. Open the downloaded `.dmg` file.
+4. Drag **Docker** into the **Applications** folder.
+5. Open **Docker** from your Applications folder.
+6. Wait until the Docker icon in the menu bar (top-right) stops animating — this means Docker is running.
+
+---
+
+### Step 2 — Start the Backend
+
+**Windows:**
+
+1. Open **Command Prompt** (`Windows key + R` → type `cmd` → Enter).
+2. Navigate to the `docker` folder inside the project:
+   ```
+   cd C:\path\to\CPRBPF\docker
+   ```
+   (Replace `C:\path\to\CPRBPF` with where you saved the project.)
+3. Run:
+   ```
+   docker compose up -d
+   ```
+4. Docker will download and start the backend containers. The first time may take a few minutes.
+5. When done, you will see:
+   ```
+   Container lawlibrary_mysql      Started
+   Container lawlibrary_api        Started
+   Container lawlibrary_phpmyadmin Started
+   ```
+
+**macOS:**
+
+1. Open **Terminal** (`Command + Space` → type `Terminal` → Enter).
+2. Navigate to the `docker` folder:
+   ```
+   cd /path/to/CPRBPF/docker
+   ```
+3. Run:
+   ```
+   docker compose up -d
+   ```
+4. Same as above — wait for the three containers to start.
+
+---
+
+### Step 3 — Import the Database (First Time Only)
+
+After starting Docker for the first time, you must import the database schema and data:
+
+**Windows:**
+```
+docker exec -i lawlibrary_mysql mysql -u root -plawlibrary123 law_library < ..\law_library\database_setup.sql
+```
+
+**macOS / Linux:**
+```
+docker exec -i lawlibrary_mysql mysql -u root -plawlibrary123 law_library < ../law_library/database_setup.sql
+```
+
+> You only need to do this once. After the first import, data is saved and persists between restarts.
+
+---
+
+### Step 4 — Verify Everything is Running
+
+Open your web browser and go to:
+
+| Service | URL |
+|---|---|
+| **API** | http://localhost:8088 |
+| **phpMyAdmin** (database GUI) | http://localhost:8087 |
+
+- The API page will show a blank page or a JSON response — this is normal.
+- phpMyAdmin lets you view and edit the database. Login: **Username:** `root` / **Password:** `lawlibrary123`
+
+---
+
+### Step 5 — Stop the Backend
+
+When you are done, stop the containers to free up memory:
+
+**Windows:**
+```
+docker compose down
+```
+(Run this from the `docker` folder in Command Prompt.)
+
+**macOS:**
+```
+docker compose down
+```
+(Run this from the `docker` folder in Terminal.)
+
+---
+
+### Common Docker Commands
+
+| Task | Command (run from the `docker` folder) |
+|---|---|
+| Start the backend | `docker compose up -d` |
+| Stop the backend | `docker compose down` |
+| View running containers | `docker ps` |
+| View logs (if something is wrong) | `docker compose logs` |
+
+---
+
+## 14. Project Structure for Developers
 
 This section explains what each folder and file in the project does. This is intended for developers who will continue building on this project.
 
 ```
-TheLawLibrary/
-├── law_library/              ← Main Flutter app
+CPRBPF/
+├── law_library/              <- Main Flutter app
 │   ├── lib/
-│   │   ├── main.dart         ← App entry point. Initializes providers and starts SplashScreen
-│   │   ├── screens/          ← All UI screens (pages) of the app
-│   │   │   ├── splash_screen.dart       ← Loading screen shown on app start
-│   │   │   ├── onboarding_screen.dart   ← Introduction slides for first-time users
-│   │   │   ├── login_screen.dart        ← Officer login page
-│   │   │   ├── home_screen.dart         ← Main screen after login (law categories)
-│   │   │   ├── dashboard_screen.dart    ← Overview dashboard with stats
-│   │   │   ├── law_detail_screen.dart   ← Full text view of a single law
-│   │   │   ├── law_form_screen.dart     ← Form to add or edit a law (admin only)
-│   │   │   ├── favorites_screen.dart    ← Saved/bookmarked laws
-│   │   │   ├── settings_screen.dart     ← App language, theme, and preferences
-│   │   │   ├── admin_panel_screen.dart  ← Admin tools: manage laws and users
-│   │   │   ├── payment_screen.dart      ← Payment/subscription page
-│   │   │   └── about_screen.dart        ← App info and credits
-│   │   ├── providers/        ← State management (what data the app holds in memory)
-│   │   │   ├── auth_provider.dart       ← Handles login, logout, current user
-│   │   │   ├── law_provider.dart        ← Loads and manages law data from API
-│   │   │   └── theme_provider.dart      ← Manages dark/light mode and language
-│   │   ├── services/         ← Business logic and external connections
-│   │   │   ├── api_service.dart         ← All HTTP calls to the Railway backend API
-│   │   │   ├── database_service.dart    ← Local SQLite for favorites storage
-│   │   │   └── recent_searches_service.dart ← Saves last 5 search terms
-│   │   ├── models/           ← Data structures (what a "law" or "user" looks like)
+│   │   ├── main.dart         <- App entry point. Initializes providers and starts SplashScreen
+│   │   ├── screens/          <- All UI screens (pages) of the app
+│   │   │   ├── splash_screen.dart       <- Loading screen shown on app start
+│   │   │   ├── onboarding_screen.dart   <- Introduction slides for first-time users
+│   │   │   ├── login_screen.dart        <- Officer login page
+│   │   │   ├── home_screen.dart         <- Main screen after login (law categories)
+│   │   │   ├── dashboard_screen.dart    <- Overview dashboard with stats
+│   │   │   ├── law_detail_screen.dart   <- Full text view of a single law
+│   │   │   ├── law_form_screen.dart     <- Form to add or edit a law (admin only)
+│   │   │   ├── favorites_screen.dart    <- Saved/bookmarked laws
+│   │   │   ├── settings_screen.dart     <- App language, theme, and preferences
+│   │   │   ├── admin_panel_screen.dart  <- Admin tools: manage laws and users
+│   │   │   ├── payment_screen.dart      <- Payment/subscription page
+│   │   │   └── about_screen.dart        <- App info and credits
+│   │   ├── providers/        <- State management (what data the app holds in memory)
+│   │   │   ├── auth_provider.dart       <- Handles login, logout, current user
+│   │   │   ├── law_provider.dart        <- Loads and manages law data from API
+│   │   │   └── theme_provider.dart      <- Manages dark/light mode and language
+│   │   ├── services/         <- Business logic and external connections
+│   │   │   ├── api_service.dart         <- All HTTP calls to the local backend API
+│   │   │   ├── database_service.dart    <- Local SQLite for favorites storage
+│   │   │   └── recent_searches_service.dart <- Saves last 5 search terms
+│   │   ├── models/           <- Data structures (what a "law" or "user" looks like)
 │   │   ├── utils/
-│   │   │   └── constants.dart           ← API base URL and app-wide constants
-│   │   ├── widgets/          ← Reusable UI components used across screens
-│   │   ├── theme/            ← App colors, fonts, and visual style
-│   │   └── l10n/             ← Language translation files (English, Malay)
-│   ├── android/              ← Android-specific build files
-│   ├── windows/              ← Windows desktop build files
-│   ├── web/                  ← Web build files
-│   └── assets/               ← Images, fonts, and videos used in the app
-│       └── images/logo.png   ← App logo
+│   │   │   └── constants.dart           <- API base URL and app-wide constants
+│   │   ├── widgets/          <- Reusable UI components used across screens
+│   │   ├── theme/            <- App colors, fonts, and visual style
+│   │   └── l10n/             <- Language translation files (English, Malay)
+│   ├── android/              <- Android-specific build files
+│   ├── windows/              <- Windows desktop build files
+│   ├── web/                  <- Web build files
+│   └── assets/               <- Images, fonts, and videos used in the app
 │
-└── api/                      ← PHP backend (hosted on Railway)
-    ├── db_config.php         ← Database connection using environment variables
-    ├── .env.example          ← Template for environment variables
-    └── *.php                 ← API endpoint files (one per feature)
+├── api/                      <- PHP backend (runs locally via Docker)
+│   ├── db_config.php         <- Database connection settings
+│   └── *.php                 <- API endpoint files (one per feature)
+│
+└── docker/                   <- Docker configuration
+    ├── docker-compose.yml    <- Defines all services (API, MySQL, phpMyAdmin)
+    ├── Dockerfile.api        <- How the PHP/Apache container is built
+    └── mysql/my.cnf          <- MySQL configuration
 ```
 
 ### Key Developer Notes:
 
-**To change the API URL** (e.g., point to a local server for testing):
+**To change the API URL** (e.g., switching between local and a deployed server):
 
 Open `lib/utils/constants.dart` and find these lines:
 ```dart
-// Production (Railway):
-static const String baseUrl = 'https://law-library-api-production.up.railway.app';
+// Local development (Docker):
+static const String baseUrl = 'http://localhost:8088';
 
-// Development (comment out production and uncomment this):
-// static const String baseUrl = 'http://localhost:80/law_library_api';
+// Android Emulator — use this instead of localhost:
+// static const String baseUrl = 'http://10.0.2.2:8088';
+
+// Physical Android device on the same Wi-Fi network:
+// static const String baseUrl = 'http://YOUR_COMPUTER_IP:8088';
 ```
-Comment out the production URL and uncomment the local URL when developing locally.
+
+> **Why different URLs for Android?** On an Android emulator, `localhost` refers to the emulator itself, not your computer. Use `10.0.2.2` to reach your computer from the emulator. For a physical phone, find your computer's local IP address (run `ipconfig` on Windows or `ifconfig` on macOS) and use that.
 
 **State Management:** The app uses the **Provider** pattern. The three main providers are initialized in `main.dart`. Any screen can read data from them using `Provider.of<X>(context)` or `context.read<X>()`.
 
@@ -410,42 +603,38 @@ Comment out the production URL and uncomment the local URL when developing local
 
 ---
 
-## 14. Database & API Reference
+## 15. Database & API Reference
 
 ### Architecture Overview
 
 ```
-Flutter App  →  Railway PHP API  →  MySQL Database (Railway)
+Flutter App  ->  Local PHP API (Docker)  ->  MySQL Database (Docker)
 ```
 
-The app does **not** connect to the database directly. All data goes through the PHP API hosted on Railway.
+The app does **not** connect to the database directly. All data goes through the PHP API running locally in Docker.
 
-### API Base URL
+### API Base URL (local)
 
 ```
-https://law-library-api-production.up.railway.app
+http://localhost:8088
 ```
+
+> For Android emulator: `http://10.0.2.2:8088`
+> For physical device on same Wi-Fi: `http://<your-computer-local-IP>:8088`
 
 ### Database
 
-- **Type:** MySQL
-- **Host:** Railway (cloud-hosted, always on)
-- **Internet required:** Yes — the app will not load laws without an internet connection
+- **Type:** MySQL 8.0
+- **Host:** localhost (Docker container)
+- **Port:** 3311 (mapped from Docker)
+- **Database name:** `law_library`
+- **Root password:** `lawlibrary123`
 
-### Backend Environment Variables (for backend developers)
+> **Security Note:** Change the default MySQL password before deploying to any shared or production environment.
 
-If you need to redeploy or modify the backend PHP API, these environment variables must be set in Railway:
+### phpMyAdmin
 
-| Variable | Description |
-|---|---|
-| `MYSQLHOST` | Database server address (Railway provides this) |
-| `MYSQLDATABASE` | Database name (`law_library`) |
-| `MYSQLUSER` | Database username |
-| `MYSQLPASSWORD` | Database password |
-| `MYSQLPORT` | Port number (usually `3306`) |
-| `APP_ENV` | Set to `production` on Railway |
-
-Railway injects these automatically when you attach a MySQL plugin to the project.
+phpMyAdmin is a visual database management tool included in the Docker setup. Access it at `http://localhost:8087` to view, edit, or back up the database without writing SQL commands.
 
 ### Default Admin Account
 
@@ -454,7 +643,7 @@ The initial admin account is seeded by `database_setup.sql`:
 | Field | Value |
 |---|---|
 | Username | `admin` |
-| Password | `password` (change this immediately in production) |
+| Password | `password` (change this immediately after setup) |
 
 > **Security Note:** Change the default admin password immediately after first setup.
 
@@ -468,7 +657,7 @@ The initial admin account is seeded by `database_setup.sql`:
 
 ---
 
-## 15. First Launch & Onboarding
+## 16. First Launch & Onboarding
 
 When you open the app for the very first time, you will see:
 
@@ -480,7 +669,7 @@ When you open the app for the very first time, you will see:
 
 ---
 
-## 16. Login Screen
+## 17. Login Screen
 
 All users must log in before accessing the app.
 
@@ -488,7 +677,7 @@ All users must log in before accessing the app.
 
 1. Enter your **Username** in the first field.
 2. Enter your **Password** in the second field.
-   - Tap the eye icon (👁) to show or hide your password.
+   - Tap the eye icon to show or hide your password.
 3. Tap the **"Login"** button.
 4. If your credentials are correct, you will be taken to the Home screen.
 
@@ -497,13 +686,13 @@ All users must log in before accessing the app.
 | Error Message | What it means | What to do |
 |---|---|---|
 | "Invalid credentials" | Wrong username or password | Check your username and password. Contact your admin if forgotten. |
-| "Network error" | No internet connection | Connect to the internet and try again. |
+| "Network error" | Cannot reach the backend | Make sure Docker is running (see Section 13) and try again. |
 
 > **Note:** There is no self-registration. Accounts are created by the system administrator via the Admin Panel.
 
 ---
 
-## 17. Home Screen
+## 18. Home Screen
 
 The Home screen is the main page you see after logging in. It displays:
 
@@ -522,7 +711,7 @@ The Home screen is the main page you see after logging in. It displays:
 
 ---
 
-## 18. Dashboard
+## 19. Dashboard
 
 The Dashboard gives an overview of the law library's content.
 
@@ -534,7 +723,7 @@ To access: Tap the **Dashboard icon** in the bottom navigation bar.
 
 ---
 
-## 19. Browsing Laws by Category
+## 20. Browsing Laws by Category
 
 1. On the **Home screen**, you will see cards representing different law categories (e.g., Criminal Law, Traffic Law, etc.).
 2. Tap any **category card** to open it.
@@ -544,7 +733,7 @@ To access: Tap the **Dashboard icon** in the bottom navigation bar.
 
 ---
 
-## 20. Viewing a Law in Detail
+## 21. Viewing a Law in Detail
 
 When you tap on a law, the **Law Detail screen** opens.
 
@@ -565,7 +754,7 @@ When you tap on a law, the **Law Detail screen** opens.
 
 ---
 
-## 21. Search
+## 22. Search
 
 The search feature allows you to quickly find any law by name or keyword.
 
@@ -590,13 +779,13 @@ The search feature allows you to quickly find any law by name or keyword.
 
 ---
 
-## 22. Favorites
+## 23. Favorites
 
 Favorites let you save laws you frequently refer to for quick access.
 
 ### How to Add a Favorite:
 
-1. Open any law (see Section 20).
+1. Open any law (see Section 21).
 2. Tap the **heart or bookmark icon** at the top right.
 3. The icon will change color to show it has been saved.
 
@@ -615,7 +804,7 @@ Favorites let you save laws you frequently refer to for quick access.
 
 ---
 
-## 23. Settings
+## 24. Settings
 
 The Settings screen allows you to personalize the app.
 
@@ -639,7 +828,7 @@ To access: Tap the **Settings icon** in the bottom navigation bar.
 
 ---
 
-## 24. Admin Panel
+## 25. Admin Panel
 
 The Admin Panel is only accessible to users with **administrator accounts**. Officers with regular accounts will not see this option.
 
@@ -651,7 +840,7 @@ The Admin Panel is only accessible to users with **administrator accounts**. Off
 
 ---
 
-### 24a. Managing Laws
+### 25a. Managing Laws
 
 **Add a New Law:**
 
@@ -680,7 +869,7 @@ The Admin Panel is only accessible to users with **administrator accounts**. Off
 
 > **Warning:** Deleting a law is permanent and cannot be undone. Be sure before deleting.
 
-## 25. Payment Screen
+## 26. Payment Screen
 
 The Payment screen handles subscription or access fees for the app (if applicable).
 
@@ -691,7 +880,7 @@ The Payment screen handles subscription or access fees for the app (if applicabl
 
 ---
 
-## 26. About Screen
+## 27. About Screen
 
 The About screen shows information about the app.
 
@@ -713,8 +902,8 @@ To access: Go to **Settings** and tap **"About"**, or look for it in the app's s
 
 ### The app shows a blank screen or "No data found"
 
-- **Cause:** No internet connection, or the Railway server is temporarily down.
-- **Fix:** Check your internet connection and try again. If the problem persists, contact the system administrator.
+- **Cause:** The backend (Docker) is not running.
+- **Fix:** Open a terminal, navigate to the `docker` folder, and run `docker compose up -d`. Wait for containers to start, then reload the app.
 
 ### "flutter doctor" shows errors during setup
 
@@ -728,19 +917,31 @@ To access: Go to **Settings** and tap **"About"**, or look for it in the app's s
 
 ### Android emulator is very slow
 
-- Ensure your computer has **hardware virtualization** enabled in BIOS (usually on by default).
+- **Windows:** Ensure your computer has **hardware virtualization** enabled in BIOS (usually on by default).
+- **macOS (Apple Silicon):** Make sure your emulator system image is **ARM64**, not x86. ARM images run natively and are much faster.
 - Close other programs to free up RAM.
 - Alternatively, use a physical Android phone instead.
 
 ### Login does not work
 
-- Check that your internet is connected.
-- Verify your username and password with the system administrator.
-- Make sure you are not on a network that blocks external connections (e.g., some corporate or government networks may require VPN).
+- Make sure Docker is running and the backend containers are up (`docker ps` to check).
+- Make sure the API URL in `constants.dart` matches your setup (see Section 14).
+- For Android emulator, the URL should be `http://10.0.2.2:8088`, not `http://localhost:8088`.
+
+### Docker says "port is already in use"
+
+- Another program is using port 8088 or 3311. Either stop that program, or edit `docker-compose.yml` to use different port numbers (the left side of the `ports:` mapping).
+
+### Docker Desktop won't start on macOS
+
+- Make sure you downloaded the correct version (Apple Silicon vs Intel).
+- Try restarting your Mac and opening Docker Desktop again.
 
 ---
 
 ## Quick Reference — Key Commands for Developers
+
+### Flutter Commands
 
 | Task | Command |
 |---|---|
@@ -754,6 +955,16 @@ To access: Go to **Settings** and tap **"About"**, or look for it in the app's s
 | Build for web | `flutter build web` |
 | Check Flutter setup | `flutter doctor` |
 
+### Docker Commands (run from the `docker` folder)
+
+| Task | Command |
+|---|---|
+| Start the backend | `docker compose up -d` |
+| Stop the backend | `docker compose down` |
+| View running containers | `docker ps` |
+| View logs | `docker compose logs` |
+| Import database (first time) | See Section 13, Step 3 |
+
 ---
 
 ---
@@ -766,19 +977,18 @@ To access: Go to **Settings** and tap **"About"**, or look for it in the app's s
 
 ---
 
-## 27. Accessing the Web App
+## 28. Accessing the Web App
 
 The web app runs in any modern web browser — no installation required.
 
-1. Open your web browser (Chrome, Edge, or Firefox recommended).
-2. Go to the web app URL provided by your system administrator.
-3. The app will load immediately. You do not need to log in to browse laws — the law list is visible to everyone.
-
-> **Note for administrators:** The web app is hosted on Railway. The URL is configured by the project owner. If you do not have the URL, contact your system administrator.
+1. Make sure the backend Docker containers are running (see Section 13).
+2. Open your web browser (Chrome, Edge, or Firefox recommended).
+3. Go to the web app URL provided by your system administrator.
+4. The app will load immediately. You do not need to log in to browse laws — the law list is visible to everyone.
 
 ---
 
-## 28. Web App Login
+## 29. Web App Login
 
 Login is only required to access admin features (managing laws and users). Regular officers can browse and save favorites without logging in.
 
@@ -802,7 +1012,7 @@ Login is only required to access admin features (managing laws and users). Regul
 
 ---
 
-## 29. Home — Browsing & Searching Laws
+## 30. Home — Browsing & Searching Laws
 
 The Home page is the main screen of the web app. It has a two-panel layout:
 
@@ -838,7 +1048,7 @@ The Home page is the main screen of the web app. It has a two-panel layout:
 
 ---
 
-## 30. Viewing a Law in Detail (Web)
+## 31. Viewing a Law in Detail (Web)
 
 Click any law in the left panel list to open it in the right detail panel.
 
@@ -857,13 +1067,13 @@ On smaller screens, clicking a law opens it in full-screen view. A **back arrow*
 
 ---
 
-## 31. Favorites (Web)
+## 32. Favorites (Web)
 
 Favorites allow you to save laws for quick access. They are stored in your browser and do not require an account.
 
 ### How to Save a Favorite:
 
-1. Open any law (see Section 30).
+1. Open any law (see Section 31).
 2. Click the **bookmark / star icon** in the detail panel.
 3. The icon will turn gold/filled to confirm it has been saved.
 
@@ -886,7 +1096,7 @@ Favorites allow you to save laws for quick access. They are stored in your brows
 
 ---
 
-## 32. Settings (Web)
+## 33. Settings (Web)
 
 The Settings page lets you personalise the web app's appearance.
 
@@ -912,7 +1122,7 @@ To access: Click **"Settings"** at the bottom of the left sidebar.
 
 ---
 
-## 33. Admin Dashboard (Web)
+## 34. Admin Dashboard (Web)
 
 > **Admin accounts only.** You must be logged in as an administrator to access this page.
 
@@ -944,7 +1154,7 @@ Click the **Refresh** button (top right) to reload the latest statistics from th
 
 ---
 
-## 34. Manage Laws (Web)
+## 35. Manage Laws (Web)
 
 > **Admin accounts only.**
 
@@ -989,7 +1199,7 @@ To access: Click **"Manage Laws"** in the left sidebar.
 
 ---
 
-## 35. Manage Users (Web)
+## 36. Manage Users (Web)
 
 > **Admin accounts only.**
 
@@ -1030,5 +1240,5 @@ To access: Click **"Manage Users"** in the left sidebar.
 
 ---
 
-*End of User Manual — Road Offence Act Mobile Application*  
+*End of User Manual — The Law Library*
 *Prepared by: Muhammad Adam Danish | University of Technology Brunei |*
