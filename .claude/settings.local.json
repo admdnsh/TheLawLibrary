@@ -38,7 +38,10 @@
       "Bash(flutter analyze *)",
       "Bash(railway logs *)",
       "Bash(ps -p 22379 -o args)",
-      "Bash(git -C /Users/admdnsh/Desktop/TheLawLibrary status)"
+      "Bash(git -C /Users/admdnsh/Desktop/TheLawLibrary status)",
+      "Bash(docker exec *)",
+      "Bash(mysqldump -h hopper.proxy.rlwy.net -P 16890 -u root -pvjJIkKrpezDyGreliVhBujJushqHCgwq railway > /tmp/railway_dump.sql 2>&1 && echo \"SUCCESS\" || echo \"FAILED\")",
+      "Bash(mysqldump -h hopper.proxy.rlwy.net -P 16890 -u root -pvjJIkKrpezDyGreliVhBujJushqHCgwq --set-gtid-purged=OFF --no-tablespaces railway)"
     ]
   }
 }

@@ -467,25 +467,7 @@ The backend is a PHP API with a MySQL database. It runs locally on your computer
 
 ---
 
-### Step 3 — Import the Database (First Time Only)
-
-After starting Docker for the first time, you must import the database schema and data:
-
-**Windows:**
-```
-docker exec -i lawlibrary_mysql mysql -u root -plawlibrary123 law_library < ..\law_library\database_setup.sql
-```
-
-**macOS / Linux:**
-```
-docker exec -i lawlibrary_mysql mysql -u root -plawlibrary123 law_library < ../law_library/database_setup.sql
-```
-
-> You only need to do this once. After the first import, data is saved and persists between restarts.
-
----
-
-### Step 4 — Verify Everything is Running
+### Step 3 — Verify Everything is Running
 
 Open your web browser and go to:
 
@@ -499,7 +481,7 @@ Open your web browser and go to:
 
 ---
 
-### Step 5 — Stop the Backend
+### Step 4 — Stop the Backend
 
 When you are done, stop the containers to free up memory:
 
@@ -642,8 +624,8 @@ The initial admin account is seeded by `database_setup.sql`:
 
 | Field | Value |
 |---|---|
-| Username | `admin` |
-| Password | `password` (change this immediately after setup) |
+| Username | `SuperAdmin` |
+| Password | `Super123` (change this immediately after setup) |
 
 > **Security Note:** Change the default admin password immediately after first setup.
 

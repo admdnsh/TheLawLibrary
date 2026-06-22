@@ -9,6 +9,12 @@ services:
       - mysql
     networks:
       - lawlibrary_network
+    environment:
+      MYSQLHOST: mysql
+      MYSQLDATABASE: law_library
+      MYSQLUSER: root
+      MYSQLPASSWORD: lawlibrary123
+      MYSQLPORT: 3306
     volumes:
       - ../api:/var/www/html
     command: >
@@ -28,6 +34,7 @@ services:
     volumes:
       - lawlibrary_data:/var/lib/mysql
       - ./mysql/my.cnf:/etc/mysql/conf.d/custom.cnf
+      - ../law_library/database_setup.sql:/docker-entrypoint-initdb.d/database_setup.sql
     networks:
       - lawlibrary_network
 
