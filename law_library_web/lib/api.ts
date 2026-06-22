@@ -5,10 +5,10 @@ import type { Law, ApiResponse, User, UserRole } from '@/types';
 // make sure all others are commented out.
 // ---------------------------------------------------------------
 // Railway live server (only if Railway deployment is active):
-// const BASE_URL = 'https://law-library-api-production.up.railway.app';
+const BASE_URL = 'https://law-library-api-production.up.railway.app';
 //
 // Docker running locally (default for local development):
-const BASE_URL = 'http://localhost:8088';
+// const BASE_URL = 'http://localhost:8088';
 // ---------------------------------------------------------------
 
 export interface LawsParams {
