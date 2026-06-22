@@ -39,17 +39,25 @@ export default function LawFormModal({ law, categories, onSave, onClose }: Props
   const [useCustomCategory, setUseCustomCategory] = useState(false);
   const [sectionNumber, setSectionNumber] = useState('');
   const [chapterCap, setChapterCap] = useState('68');
+  const [isDirty, setIsDirty] = useState(false);
+  const [confirm, setConfirm] = useState<'save' | 'discard' | null>(null);
 
   const isEdit = !!law;
+
+  function requestClose() {
+    if (isDirty) setConfirm('discard');
+    else onClose();
+  }
 
   // Close on Escape
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') requestClose();
     }
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [onClose]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isDirty]);
 
   useEffect(() => {
     if (law) {
@@ -61,6 +69,7 @@ export default function LawFormModal({ law, categories, onSave, onClose }: Props
       setSectionNumber('');
       setChapterCap('68');
     }
+    setIsDirty(false);
   }, [law]);
 
   useEffect(() => {
@@ -72,6 +81,7 @@ export default function LawFormModal({ law, categories, onSave, onClose }: Props
 
   function set(key: keyof Law, value: string) {
     setForm((prev) => ({ ...prev, [key]: value }));
+    setIsDirty(true);
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -84,11 +94,17 @@ export default function LawFormModal({ law, categories, onSave, onClose }: Props
       return;
     }
 
-    const payload: Law = { ...form, Category: finalCategory };
+    setConfirm('save');
+  }
 
+  async function confirmSave() {
+    setConfirm(null);
+    const finalCategory = useCustomCategory ? customCategory.trim() : form.Category;
+    const payload: Law = { ...form, Category: finalCategory };
     setSaving(true);
     try {
       await onSave(payload, isEdit ? originalChapter : undefined);
+      setIsDirty(false);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to save law');
     } finally {
@@ -108,7 +124,7 @@ export default function LawFormModal({ law, categories, onSave, onClose }: Props
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/50" onClick={requestClose} />
 
       {/* Modal */}
       <div
@@ -122,7 +138,7 @@ export default function LawFormModal({ law, categories, onSave, onClose }: Props
         >
           <h2 className="text-lg font-bold">{isEdit ? 'Edit Law' : 'Add New Law'}</h2>
           <button
-            onClick={onClose}
+            onClick={requestClose}
             className="p-1.5 rounded-lg transition"
             style={{ color: 'var(--muted)' }}
           >
@@ -330,7 +346,7 @@ export default function LawFormModal({ law, categories, onSave, onClose }: Props
           >
             <button
               type="button"
-              onClick={onClose}
+              onClick={requestClose}
               className="px-4 py-2 text-sm rounded-lg border transition"
               style={{ borderColor: 'var(--border)', color: 'var(--foreground)' }}
             >
@@ -347,6 +363,50 @@ export default function LawFormModal({ law, categories, onSave, onClose }: Props
           </div>
         </form>
       </div>
+
+      {/* Confirmation dialog */}
+      {confirm && (
+        <div className="absolute inset-0 z-10 flex items-center justify-center">
+          <div
+            className="relative z-10 w-full max-w-sm rounded-2xl shadow-2xl p-6"
+            style={{ background: 'var(--card-bg)', border: '1px solid var(--border)' }}
+          >
+            <h3 className="text-base font-bold mb-2">
+              {confirm === 'save'
+                ? isEdit ? 'Save changes?' : 'Create law?'
+                : 'Discard changes?'}
+            </h3>
+            <p className="text-sm mb-5" style={{ color: 'var(--muted)' }}>
+              {confirm === 'save'
+                ? isEdit
+                  ? 'This will update the law with your changes.'
+                  : 'This will add the new law to the library.'
+                : 'Any unsaved changes will be lost.'}
+            </p>
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => setConfirm(null)}
+                className="px-4 py-2 text-sm rounded-lg border transition"
+                style={{ borderColor: 'var(--border)', color: 'var(--foreground)' }}
+              >
+                {confirm === 'save' ? 'Go back' : 'Keep editing'}
+              </button>
+              <button
+                onClick={confirm === 'save' ? confirmSave : onClose}
+                className={`px-4 py-2 text-sm font-semibold rounded-lg text-white transition ${
+                  confirm === 'discard'
+                    ? 'bg-red-600 hover:bg-red-700'
+                    : 'bg-blue-900 hover:bg-blue-800'
+                }`}
+              >
+                {confirm === 'save'
+                  ? isEdit ? 'Yes, save' : 'Yes, create'
+                  : 'Yes, discard'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
