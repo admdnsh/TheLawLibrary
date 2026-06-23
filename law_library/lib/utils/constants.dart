@@ -8,10 +8,10 @@ class ApiConstants {
   // static const String baseUrl = 'http://10.0.2.2:8088';
   //
   // macOS / Windows desktop app or Chrome web — Docker running locally:
-  // static const String baseUrl = 'http://localhost:8088';
+  static const String baseUrl = 'http://localhost:8088';
   //
   // Railway live server (only if Railway deployment is active):
-  static const String baseUrl = 'https://law-library-api-production.up.railway.app';
+  // static const String baseUrl = 'https://law-library-api-production.up.railway.app';
   // ---------------------------------------------------------------
 
   // Default pagination values
