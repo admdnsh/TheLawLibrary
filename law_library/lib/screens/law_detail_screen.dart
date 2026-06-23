@@ -334,6 +334,7 @@ class _LawDetailScreenState extends State<LawDetailScreen> {
               color: Theme.of(context).colorScheme.onSurfaceVariant,
               height: 1.6,
             ),
+            textAlign: TextAlign.justify,
           )
               .animate()
               .fadeIn(duration: 350.ms, delay: 100.ms)

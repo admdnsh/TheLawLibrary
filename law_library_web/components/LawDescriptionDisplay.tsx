@@ -12,7 +12,7 @@ export default function LawDescriptionDisplay({ law }: { law: Law }) {
       <h2 className="text-xs font-semibold uppercase tracking-wide mb-3" style={{ color: 'var(--muted)' }}>
         {t.description}
       </h2>
-      <p className="text-sm leading-relaxed whitespace-pre-line">{text}</p>
+      <p className="text-sm leading-relaxed whitespace-pre-line text-justify">{text}</p>
     </div>
   );
 }

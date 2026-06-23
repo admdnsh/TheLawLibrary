@@ -41,7 +41,24 @@
       "Bash(git -C /Users/admdnsh/Desktop/TheLawLibrary status)",
       "Bash(docker exec *)",
       "Bash(mysqldump -h hopper.proxy.rlwy.net -P 16890 -u root -pvjJIkKrpezDyGreliVhBujJushqHCgwq railway > /tmp/railway_dump.sql 2>&1 && echo \"SUCCESS\" || echo \"FAILED\")",
-      "Bash(mysqldump -h hopper.proxy.rlwy.net -P 16890 -u root -pvjJIkKrpezDyGreliVhBujJushqHCgwq --set-gtid-purged=OFF --no-tablespaces railway)"
+      "Bash(mysqldump -h hopper.proxy.rlwy.net -P 16890 -u root -pvjJIkKrpezDyGreliVhBujJushqHCgwq --set-gtid-purged=OFF --no-tablespaces railway)",
+      "Read(//Users/admdnsh/Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/3755607d-27f1-435f-9efa-b32aafd1630a/03b444e5-f61a-4e5d-9069-dfdb1c413826/skills/pptx/**)",
+      "Bash(python scripts/extract-text.py \"/Users/admdnsh/Library/CloudStorage/OneDrive-UniversitiTeknologiBrunei/Capstone Project UTB 2026/\\(or\\)Final Presentation.pptx\")",
+      "Bash(python3 scripts/extract-text.py \"/Users/admdnsh/Library/CloudStorage/OneDrive-UniversitiTeknologiBrunei/Capstone Project UTB 2026/\\(or\\)Final Presentation.pptx\")",
+      "Bash(extract-text \"/Users/admdnsh/Library/CloudStorage/OneDrive-UniversitiTeknologiBrunei/Capstone Project UTB 2026/\\(or\\)Final Presentation.pptx\")",
+      "Bash(python3 -c ' *)",
+      "Bash(pip3 install *)",
+      "Bash(python3 scripts/thumbnail.py \"/Users/admdnsh/Library/CloudStorage/OneDrive-UniversitiTeknologiBrunei/Capstone Project UTB 2026/\\(or\\)Final Presentation.pptx\")",
+      "Bash(/usr/bin/python3 \"/Users/admdnsh/Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/3755607d-27f1-435f-9efa-b32aafd1630a/03b444e5-f61a-4e5d-9069-dfdb1c413826/skills/pptx/scripts/thumbnail.py\" \"/Users/admdnsh/Library/CloudStorage/OneDrive-UniversitiTeknologiBrunei/Capstone Project UTB 2026/\\(or\\)Final Presentation.pptx\")",
+      "Bash(/usr/bin/python3 -m pip install defusedxml -q)",
+      "Bash(cat /tmp/pptx_unpacked/ppt/theme/theme1.xml | grep -o 'val=\"[0-9A-Fa-f]\\\\{6\\\\}\"' | head -20)",
+      "Bash(cat /tmp/pptx_unpacked/ppt/slides/slide1.xml | grep -o 'solidFill.*?/solidFill' | head -5 *)",
+      "Bash(npm list *)",
+      "Bash(/usr/bin/python3 -c ' *)",
+      "Bash(pdftotext \"/Users/admdnsh/Library/CloudStorage/OneDrive-UniversitiTeknologiBrunei/Capstone Project UTB 2026/Final Presentation.pdf\" -)",
+      "Bash(brew list *)",
+      "Bash(pdftoppm -jpeg -r 150 \"/Users/admdnsh/Library/CloudStorage/OneDrive-UniversitiTeknologiBrunei/Capstone Project UTB 2026/Final Presentation.pdf\" /tmp/slide_preview)",
+      "Read(//private/tmp/**)"
     ]
   }
 }

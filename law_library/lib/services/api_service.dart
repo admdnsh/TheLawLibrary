@@ -176,61 +176,38 @@ class ApiService {
   // Admin CRUD operations
   Future<bool> createLaw(Law law) async {
     try {
-      logger.d(
-          'Create Law Request Body: ${law.toJson()}'); // Debug log for request
-
       final response = await http.post(
         Uri.parse('$baseUrl/create_law.php'),
         body: json.encode(law.toJson()),
         headers: {'Content-Type': 'application/json'},
       );
 
-      // --- CRITICAL DEBUGGING LINES (placed immediately after response) ---
-      logger.d('RAW Create Law Response Status: ${response.statusCode}');
-      logger.d(
-          'RAW Create Law Response Body: "${response.body}"'); // Print raw body as a string
-
       if (response.body.isEmpty) {
         throw Exception('Received empty response body from server.');
       }
-      // This check will help catch non-JSON output early
       if (!response.body.startsWith('{') && !response.body.startsWith('[')) {
         throw Exception(
             'Received non-JSON response from server: ${response.body}');
       }
-      // --- END CRITICAL DEBUGGING LINES ---
 
       final Map<String, dynamic> responseData = json.decode(response.body);
       return response.statusCode == 200 && responseData['success'] == true;
-
-      // Check if the boolean value is true for success
     } catch (e) {
-      logger.e('Create Law Error: $e'); // Use logger.e for errors
+      logger.e('Create Law Error: $e');
       throw Exception('Failed to create law: $e');
     }
   }
 
-  // MODIFIED: Added originalChapter parameter to updateLaw and included it in the body
   Future<bool> updateLaw(Law law, {required String originalChapter}) async {
     try {
-      // Use law.toJson() to send all relevant fields for update
       final Map<String, dynamic> requestBody = law.toJson();
-      requestBody['Original_Chapter'] =
-          originalChapter; // Add the original chapter
-
-      logger.d('Update Law Request Body: $requestBody');
-      logger.d('Sending to URL: $baseUrl/update_law.php');
+      requestBody['Original_Chapter'] = originalChapter;
 
       final response = await http.post(
         Uri.parse('$baseUrl/update_law.php'),
-        body: json.encode(requestBody), // Encode the modified map
+        body: json.encode(requestBody),
         headers: {'Content-Type': 'application/json'},
       );
-
-      // --- CRITICAL DEBUGGING LINES (placed immediately after response) ---
-      logger.d('RAW Update Law Response Status: ${response.statusCode}');
-      logger.d(
-          'RAW Update Law Response Body: "${response.body}"'); // Print raw body as a string
 
       if (response.body.isEmpty) {
         throw Exception('Received empty response body from server.');
@@ -239,13 +216,11 @@ class ApiService {
         throw Exception(
             'Received non-JSON response from server: ${response.body}');
       }
-      // --- END CRITICAL DEBUGGING LINES ---
 
       final Map<String, dynamic> responseData = json.decode(response.body);
-
       return response.statusCode == 200 && responseData['success'] == true;
     } catch (e) {
-      logger.e('Update Law Error: $e'); // Use logger.e for errors
+      logger.e('Update Law Error: $e');
       throw Exception('Failed to update law: $e');
     }
   }

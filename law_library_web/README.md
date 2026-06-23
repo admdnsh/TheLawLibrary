@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Law Library — Web App
+
+A responsive web application for browsing and searching Brunei's Road Traffic Act (RTA) and Road Traffic Rules (RTR) laws. Companion to the Flutter mobile/desktop app, optimised for desktop browsers.
+
+## Prerequisites
+
+- Node.js 18 or later
+- A running instance of the backend API (see [`api/`](../api/))
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Configuration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The API base URL is set in `lib/api.ts`. The default points to Docker running locally. Uncomment the line that matches your setup:
 
-## Learn More
+```ts
+// Docker running locally (default):
+const BASE_URL = 'http://localhost:8088';
 
-To learn more about Next.js, take a look at the following resources:
+// Railway — only if deploying to Railway:
+// const BASE_URL = 'https://law-library-api-production.up.railway.app';
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To start the API with Docker, run from the `docker/` folder:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+docker compose up -d
+```
 
-## Deploy on Vercel
+## Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Browse and search Road Traffic Act laws by category
+- View compound fine tables for each law
+- Bilingual support (English & Malay)
+- Favorites saved locally in the browser
+- Dark / Light theme
+- Keyboard navigation (arrow keys, Escape)
+- Admin dashboard — manage laws and users (create, edit, delete)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Structure
+
+```
+app/
+  page.tsx           # Home — law browsing and search
+  favorites/         # Saved favorites page
+  settings/          # Theme, language, and preferences
+  law/[chapter]/     # Individual law detail page
+  admin/             # Admin login, dashboard, law and user management
+
+components/          # Reusable UI components
+lib/
+  api.ts             # All API calls
+  auth.ts            # Session management and password hashing
+  favorites.ts       # LocalStorage favorites management
+  translations.ts    # English and Malay string definitions
+
+types/               # TypeScript interfaces
+```
