@@ -24,11 +24,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 The API base URL is set in `lib/api.ts`. The default points to Docker running locally. Uncomment the line that matches your setup:
 
 ```ts
-// Docker running locally (default):
 const BASE_URL = 'http://localhost:8088';
-
-// Railway — only if deploying to Railway:
-// const BASE_URL = 'https://law-library-api-production.up.railway.app';
 ```
 
 To start the API with Docker, run from the `docker/` folder:

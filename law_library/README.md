@@ -29,13 +29,10 @@ The API base URL is set in `lib/utils/constants.dart`. The default points to Doc
 
 ```dart
 // Android emulator — use this when running on an emulator:
-static const String baseUrl = 'http://10.0.2.2:8088';
+// static const String baseUrl = 'http://10.0.2.2:8088';
 
 // macOS / Windows desktop or Chrome web — Docker running locally:
-// static const String baseUrl = 'http://localhost:8088';
-
-// Railway — only if deploying to Railway:
-// static const String baseUrl = 'https://law-library-api-production.up.railway.app';
+static const String baseUrl = 'http://localhost:8088';
 ```
 
 To start the API with Docker, run from the `docker/` folder:

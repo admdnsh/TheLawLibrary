@@ -1,5 +1,4 @@
 class ApiConstants {
-  // Base URL for the API (XAMPP)
   // ---------------------------------------------------------------
   // API Base URL — uncomment the line that matches your setup,
   // make sure all others are commented out.
@@ -9,9 +8,6 @@ class ApiConstants {
   //
   // macOS / Windows desktop app or Chrome web — Docker running locally:
   static const String baseUrl = 'http://localhost:8088';
-  //
-  // Railway live server (only if Railway deployment is active):
-  // static const String baseUrl = 'https://law-library-api-production.up.railway.app';
   // ---------------------------------------------------------------
 
   // Default pagination values

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 9.6.0, for macos26.2 (arm64)
---
--- Host: hopper.proxy.rlwy.net    Database: railway
+-- Law Library Database
+-- This file is auto-imported by Docker on first run (docker compose up -d).
+-- To update: dump from your current database and replace this file, then run:
+--   docker compose down -v && docker compose up -d
 -- ------------------------------------------------------
--- Server version	9.6.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
