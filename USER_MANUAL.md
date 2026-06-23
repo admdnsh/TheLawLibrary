@@ -30,15 +30,14 @@
 16. [First Launch & Onboarding](#16-first-launch--onboarding)
 17. [Login Screen](#17-login-screen)
 18. [Home Screen](#18-home-screen)
-19. [Dashboard](#19-dashboard)
-20. [Browsing Laws by Category](#20-browsing-laws-by-category)
-21. [Viewing a Law in Detail](#21-viewing-a-law-in-detail)
-22. [Search](#22-search)
-23. [Favorites](#23-favorites)
-24. [Settings](#24-settings)
-25. [Admin Panel](#25-admin-panel)
-26. [Payment Screen](#26-payment-screen)
-27. [About Screen](#27-about-screen)
+19. [Browsing and Filtering Laws](#19-browsing-and-filtering-laws)
+20. [Viewing a Law in Detail](#20-viewing-a-law-in-detail)
+21. [Search](#21-search)
+22. [Favorites](#22-favorites)
+23. [Settings](#23-settings)
+24. [Admin Panel](#24-admin-panel)
+25. [Payment Screen](#25-payment-screen)
+26. [About Screen](#26-about-screen)
 
 ### Part 3 — Web App Usage Manual
 28. [Accessing the Web App](#28-accessing-the-web-app)
@@ -260,11 +259,11 @@ You will download the project onto your computer.
 **Windows:**
 1. Right-click the ZIP file and select **"Extract All..."**
 2. Choose where to extract it (e.g., Desktop) and click **"Extract"**.
-3. You will have a folder called `CPRBPF` (or similar). Remember where it is.
+3. You will have a folder called `TheLawLibrary` (or similar). Remember where it is.
 
 **macOS:**
 1. Double-click the ZIP file — macOS will extract it automatically.
-2. You will have a folder called `CPRBPF` (or similar) in the same location as the ZIP.
+2. You will have a folder called `TheLawLibrary` (or similar) in the same location as the ZIP.
 
 ---
 
@@ -382,9 +381,9 @@ You can also run the app as a regular Windows application on your computer.
 
 ---
 
-## 12. Run on Web Browser
+## 12. Run on Web Browser (Flutter)
 
-You can run the app in your web browser (Chrome is recommended).
+> **Note:** This runs the Flutter app inside Chrome. For the full-featured **web admin portal** (Next.js), see Section 28.
 
 ### Steps:
 
@@ -437,9 +436,9 @@ The backend is a PHP API with a MySQL database. It runs locally on your computer
 1. Open **Command Prompt** (`Windows key + R` → type `cmd` → Enter).
 2. Navigate to the `docker` folder inside the project:
    ```
-   cd C:\path\to\CPRBPF\docker
+   cd C:\path\to\TheLawLibrary\docker
    ```
-   (Replace `C:\path\to\CPRBPF` with where you saved the project.)
+   (Replace `C:\path\to\TheLawLibrary` with where you saved the project.)
 3. Run:
    ```
    docker compose up -d
@@ -457,7 +456,7 @@ The backend is a PHP API with a MySQL database. It runs locally on your computer
 1. Open **Terminal** (`Command + Space` → type `Terminal` → Enter).
 2. Navigate to the `docker` folder:
    ```
-   cd /path/to/CPRBPF/docker
+   cd /path/to/TheLawLibrary/docker
    ```
 3. Run:
    ```
@@ -515,7 +514,7 @@ docker compose down
 This section explains what each folder and file in the project does. This is intended for developers who will continue building on this project.
 
 ```
-CPRBPF/
+TheLawLibrary/
 ├── law_library/              <- Main Flutter app
 │   ├── lib/
 │   │   ├── main.dart         <- App entry point. Initializes providers and starts SplashScreen
@@ -678,44 +677,42 @@ All users must log in before accessing the app.
 
 The Home screen is the main page you see after logging in. It displays:
 
-- **Law categories** — All laws are organized into categories. Each category is shown as a card.
-- **Search bar** — At the top, for quickly finding a specific law.
-- **Navigation bar** — At the bottom, for switching between main sections of the app.
+- **App logo and title** — Shown at the top of the screen.
+- **Search bar** — For quickly finding a specific law by keyword.
+- **Category filter chips** — A scrollable row of buttons to filter laws by category.
+- **Law list** — All laws are shown in a scrollable list below the filters.
+- **Navigation bar** — At the bottom, for switching between sections of the app.
 
 ### Navigation Bar Icons:
 
 | Icon | Screen |
 |---|---|
-| House icon | Home (law categories) |
-| Chart/Dashboard icon | Dashboard (statistics overview) |
-| Heart/Star icon | Favorites (your saved laws) |
+| House icon | Home (law list) |
+| Star icon | Favorites (your saved laws) |
+| Payment icon | Payment |
 | Settings icon | Settings |
 
 ---
 
-## 19. Dashboard
+## 19. Browsing and Filtering Laws
 
-The Dashboard gives an overview of the law library's content.
+All laws are displayed in a list on the Home screen.
 
-- Displays **total number of laws** in the system.
-- Shows **laws by category** in a visual summary.
-- May display **recent activity** or **recently viewed laws**.
+### Filter by Category:
 
-To access: Tap the **Dashboard icon** in the bottom navigation bar.
+- Below the search bar, you will see a row of category chips (e.g., **All**, **Road Traffic Regulations**, etc.).
+- Tap any chip to show only laws from that category.
+- Tap **"All"** to remove the filter and show all laws.
 
----
+### Browse the List:
 
-## 20. Browsing Laws by Category
-
-1. On the **Home screen**, you will see cards representing different law categories (e.g., Criminal Law, Traffic Law, etc.).
-2. Tap any **category card** to open it.
-3. A list of all laws within that category will appear.
-4. Each law is shown with its **title** and a brief description.
-5. Tap any law in the list to read it in full.
+- Scroll down to browse all laws.
+- Each law shows its **title** and **chapter reference**.
+- Tap any law to read it in full.
 
 ---
 
-## 21. Viewing a Law in Detail
+## 20. Viewing a Law in Detail
 
 When you tap on a law, the **Law Detail screen** opens.
 
@@ -736,7 +733,7 @@ When you tap on a law, the **Law Detail screen** opens.
 
 ---
 
-## 22. Search
+## 21. Search
 
 The search feature allows you to quickly find any law by name or keyword.
 
@@ -761,7 +758,7 @@ The search feature allows you to quickly find any law by name or keyword.
 
 ---
 
-## 23. Favorites
+## 22. Favorites
 
 Favorites let you save laws you frequently refer to for quick access.
 
@@ -786,7 +783,7 @@ Favorites let you save laws you frequently refer to for quick access.
 
 ---
 
-## 24. Settings
+## 23. Settings
 
 The Settings screen allows you to personalize the app.
 
@@ -810,7 +807,7 @@ To access: Tap the **Settings icon** in the bottom navigation bar.
 
 ---
 
-## 25. Admin Panel
+## 24. Admin Panel
 
 The Admin Panel is only accessible to users with **administrator accounts**. Officers with regular accounts will not see this option.
 
@@ -851,7 +848,7 @@ The Admin Panel is only accessible to users with **administrator accounts**. Off
 
 > **Warning:** Deleting a law is permanent and cannot be undone. Be sure before deleting.
 
-## 26. Payment Screen
+## 25. Payment Screen
 
 The Payment screen handles subscription or access fees for the app (if applicable).
 
@@ -862,7 +859,7 @@ The Payment screen handles subscription or access fees for the app (if applicabl
 
 ---
 
-## 27. About Screen
+## 26. About Screen
 
 The About screen shows information about the app.
 
@@ -945,7 +942,7 @@ To access: Go to **Settings** and tap **"About"**, or look for it in the app's s
 | Stop the backend | `docker compose down` |
 | View running containers | `docker ps` |
 | View logs | `docker compose logs` |
-| Import database (first time) | See Section 13, Step 3 |
+| Reset database to original data | `docker compose down -v && docker compose up -d` |
 
 ---
 
@@ -961,12 +958,28 @@ To access: Go to **Settings** and tap **"About"**, or look for it in the app's s
 
 ## 28. Accessing the Web App
 
-The web app runs in any modern web browser — no installation required.
+The web app is a Next.js application that runs locally in your browser.
 
-1. Make sure the backend Docker containers are running (see Section 13).
-2. Open your web browser (Chrome, Edge, or Firefox recommended).
-3. Go to the web app URL provided by your system administrator.
-4. The app will load immediately. You do not need to log in to browse laws — the law list is visible to everyone.
+### Setup (first time only):
+
+1. Install **Node.js 18 or later** from: **https://nodejs.org** — download the LTS version and follow the installer.
+2. Open a terminal and navigate to the `law_library_web` folder inside the project:
+   ```
+   cd /path/to/TheLawLibrary/law_library_web
+   ```
+3. Install dependencies:
+   ```
+   npm install
+   ```
+4. Start the web app:
+   ```
+   npm run dev
+   ```
+5. Open your browser and go to: **http://localhost:3000**
+
+> Make sure the backend Docker containers are running first (see Section 13) — the web app will not load data without them.
+
+The app will load immediately. You do not need to log in to browse laws — the law list is visible to everyone.
 
 ---
 

@@ -58,7 +58,12 @@
       "Bash(pdftotext \"/Users/admdnsh/Library/CloudStorage/OneDrive-UniversitiTeknologiBrunei/Capstone Project UTB 2026/Final Presentation.pdf\" -)",
       "Bash(brew list *)",
       "Bash(pdftoppm -jpeg -r 150 \"/Users/admdnsh/Library/CloudStorage/OneDrive-UniversitiTeknologiBrunei/Capstone Project UTB 2026/Final Presentation.pdf\" /tmp/slide_preview)",
-      "Read(//private/tmp/**)"
+      "Read(//private/tmp/**)",
+      "Bash(sed -i '' 's/^## 22\\\\. Search/## 21. Search/' /Users/admdnsh/Desktop/TheLawLibrary/USER_MANUAL.md)",
+      "Bash(sed -i '' 's/^## 23\\\\. Favorites/## 22. Favorites/' /Users/admdnsh/Desktop/TheLawLibrary/USER_MANUAL.md)",
+      "Bash(sed -i '' 's/^## 24\\\\. Settings/## 23. Settings/' /Users/admdnsh/Desktop/TheLawLibrary/USER_MANUAL.md)",
+      "Bash(sed -i '' 's/^## 25\\\\. Admin Panel/## 24. Admin Panel/' /Users/admdnsh/Desktop/TheLawLibrary/USER_MANUAL.md)",
+      "Bash(sed -i '' 's/^## 26\\\\. Payment Screen/## 25. Payment Screen/' /Users/admdnsh/Desktop/TheLawLibrary/USER_MANUAL.md)"
     ]
   }
 }
